@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { City } from 'src/city/schema/city.schema';
+import { State } from 'src/state/schema/state.shcema';
 import { Users } from 'src/users/schema/users.schema';
 
 export type PlaceDocument = HydratedDocument<Place>;
@@ -36,8 +37,8 @@ export class Place {
   @Prop({required: true, type: mongoose.Types.ObjectId, ref: "City"})
   city: City;
 
-  @Prop({required: true, type: mongoose.Types.ObjectId, ref: "Place"})
-  state: Place;
+  @Prop({required: true, type: mongoose.Types.ObjectId, ref: "State"})
+  state: State;
 
   @Prop({required: true, type: String})
   timing: string;

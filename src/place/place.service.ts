@@ -18,7 +18,7 @@ export class PlaceService {
   }
 
  async findAll() {
-    return await this.placeModal.find().populate(["CreatedBy", "state", "city"]);
+    return await this.placeModal.find().populate(["createdBy", "state", "city"]);
   }
 
   findOne(id: number) {
