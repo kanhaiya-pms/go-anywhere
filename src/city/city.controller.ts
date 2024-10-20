@@ -21,19 +21,25 @@ export class CityController {
   findAll() {
     return this.cityService.findAll();
   }
-
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cityService.findOne(+id);
+    return this.cityService.findOne(id);
   }
+  
+  @Get("bystate/:id")
+  getCityByState(@Param("id") id: string) {
+    return this.cityService.getCityByState(id);
+  }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
-    return this.cityService.update(+id, updateCityDto);
+    return this.cityService.update(id, updateCityDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cityService.remove(+id);
+    return this.cityService.remove(id);
   }
 }

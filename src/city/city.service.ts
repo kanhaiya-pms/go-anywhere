@@ -21,15 +21,24 @@ export class CityService {
     return await this.cityModal.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} city`;
+  async getCityByState(id: string){
+    const data = await this.cityModal.find({state: id})
+
+    return {
+      stateCode: 202,
+      data
+    }
   }
 
-  update(id: number, updateCityDto: UpdateCityDto) {
-    return `This action updates a #${id} city`;
+  async findOne(id: string) {
+    return (await this.cityModal.findById(id)).populate("state");
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} city`;
+  async update(id: string, updatePlaceDto: UpdateCityDto) {
+    return await this.cityModal.findByIdAndUpdate(id,updatePlaceDto, {lean: true});
+  }
+
+ async remove(id: string) {
+    return await this.cityModal.findByIdAndDelete(id);
   }
 }

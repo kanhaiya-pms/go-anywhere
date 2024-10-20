@@ -20,15 +20,15 @@ export class StateService {
     return await this.stateModal.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} state`;
+  async findOne(id: string) {
+    return await this.stateModal.findById(id);
   }
 
-  update(id: number, updateStateDto: UpdateStateDto) {
-    return `This action updates a #${id} state`;
+  async update(id: string, updatePlaceDto: UpdateStateDto) {
+    return await this.stateModal.findByIdAndUpdate(id,updatePlaceDto, {lean: true});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} state`;
+  async remove(id: string) {
+    return await this.stateModal.findByIdAndDelete(id);
   }
 }

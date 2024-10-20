@@ -21,15 +21,15 @@ export class PlaceService {
     return await this.placeModal.find().populate(["createdBy", "state", "city"]);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} place`;
+ async findOne(id: string) {
+    return await this.placeModal.findById(id).populate(["state", "city"]);
   }
 
-  update(id: number, updatePlaceDto: UpdatePlaceDto) {
-    return `This action updates a #${id} place`;
+ async update(id: string, updatePlaceDto: UpdatePlaceDto) {
+    return await this.placeModal.findByIdAndUpdate(id,updatePlaceDto, {lean: true});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} place`;
+  async remove(id: string) {
+    return await this.placeModal.findByIdAndDelete(id);
   }
 }

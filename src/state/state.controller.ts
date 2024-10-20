@@ -23,16 +23,16 @@ export class StateController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stateService.findOne(+id);
+    return this.stateService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStateDto: UpdateStateDto) {
-    return this.stateService.update(+id, updateStateDto);
+    return this.stateService.update(id, updateStateDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stateService.remove(+id);
+    return this.stateService.remove(id);
   }
 }
