@@ -18,7 +18,25 @@ export class PlaceService {
   }
 
  async findAll() {
-    return await this.placeModal.find().populate(["createdBy", "state", "city"]);
+    const data = await this.placeModal.find().populate(["createdBy", "state", "city"]);
+    const count = await this.placeModal.countDocuments()
+
+    return {
+      data,
+      count
+    }
+  }
+
+  async findAllByCity(cityId: string) {
+    console.log("cityId =>", cityId);
+    
+    const data = await this.placeModal.find({city: cityId});
+    const count = await this.placeModal.countDocuments({city: cityId})
+
+    return {
+      data,
+      count
+    }
   }
 
  async findOne(id: string) {

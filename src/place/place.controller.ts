@@ -3,9 +3,10 @@ import { PlaceService } from './place.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { IAuth } from 'utils/common.interface';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags("place")
 @Controller('place')
 export class PlaceController {
   constructor(private readonly placeService: PlaceService) {}
@@ -23,6 +24,13 @@ export class PlaceController {
   @Get()
   findAll() {
     return this.placeService.findAll();
+  }
+
+  @Get("bycity/:cityId")
+  findAllByCity(@Param("cityId") cityId: string) {
+    console.log(cityId);
+    
+    return this.placeService.findAllByCity(cityId);
   }
 
   @Get(':id')
